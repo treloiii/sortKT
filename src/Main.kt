@@ -1,5 +1,5 @@
  public fun main(args:Array<String>){
-        shakerSort(arrayOf(15,14,13,12,11,10,9,8,7,6,5,4,3,2,1))
+        insertionSort(arrayOf(14,15,13,12,11,10,9,8,7,6,5,4,3,2,1))
 //     var i=0;
 //     var j=5;
 //     for(a in j downTo i){
@@ -7,6 +7,20 @@
 //     }
  }
 
+ public fun insertionSort(arr:Array<Int>){
+     var i=1
+     while(i<arr.size){
+         val currentValue=arr[i]
+         var j=i-1
+         while(j>=0&&arr[j]>currentValue){
+             arr[j+1]=arr[j];
+             arr[j]=currentValue;
+             j--
+         }
+         i++
+     }
+     arr.forEach(::println)
+ }
  public fun bubbleSort(arr:Array<Int>){
      arr.forEach {
          for(index1 in (0..arr.size-2)) {
