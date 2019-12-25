@@ -1,5 +1,5 @@
  public fun main(args:Array<String>){
-        insertionSort(arrayOf(14,15,13,12,11,10,9,8,7,6,5,4,3,2,1))
+        bogoSort(arrayOf(14,15,13,12,11,10,9,8,7,6,5,4,3,2,1))
 //     var i=0;
 //     var j=5;
 //     for(a in j downTo i){
@@ -7,15 +7,45 @@
 //     }
  }
 
+ public fun bogoSort(arr: Array<Int>){
+     val start=System.currentTimeMillis()
+
+     do{
+         for(i in arr.indices){
+             val rand=(arr.indices).random();
+             val buf=arr[i]
+             arr[i]=arr[rand]
+             arr[rand]=buf;
+         }
+     }
+     while (!isSorted(arr))
+
+
+
+     println("bogosort time: ${System.currentTimeMillis()-start}")
+ }
+
+ public fun isSorted(arr:Array<Int>):Boolean{
+    val i=1;
+     while(i<arr.size){
+         if(arr[i]<arr[i-1]) return false
+     }
+     return true
+ }
  public fun insertionSort(arr:Array<Int>){
      var i=1
      while(i<arr.size){
          val currentValue=arr[i]
          var j=i-1
-         while(j>=0&&arr[j]>currentValue){
-             arr[j+1]=arr[j];
-             arr[j]=currentValue;
-             j--
+         while(j>=0){
+             if(arr[j]>currentValue) {
+                 arr[j + 1] = arr[j];
+                 arr[j] = currentValue;
+                 j--
+             }
+             else{
+                 break
+             }
          }
          i++
      }
