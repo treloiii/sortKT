@@ -1,6 +1,26 @@
  public fun main(args:Array<String>){
-     shuttleSort(arrayOf(15,14,13,12,11,10,9,8,7,6,5,4,3,2,1))
+     shellSort(arrayOf(15,14,13,12,11,10,9,8,7,6,5,4,3,2,1))
 //     bogoSort(arrayOf(12,11,10,9,8,7,6,5,4,3,2,1))
+ }
+
+ public fun shellSort(arr: Array<Int>){
+     var gap=arr.size/2
+
+     while(gap>=1){
+         for(right in arr.indices){
+             var c=right-gap;
+             while(c>=0){
+                 if(arr[c]>arr[c+gap]){
+                     val buf=arr[c]
+                     arr[c]=arr[c+gap]
+                     arr[c+gap]=buf
+                 }
+                 c-=gap
+             }
+         }
+         gap /= 2
+     }
+     arr.forEach(::println)
  }
 
  public fun shuttleSort(arr: Array<Int>){
