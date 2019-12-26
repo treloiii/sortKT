@@ -1,38 +1,52 @@
  public fun main(args:Array<String>){
-        bogoSort(arrayOf(14,15,13,12,11,10,9,8,7,6,5,4,3,2,1))
-//     var i=0;
-//     var j=5;
-//     for(a in j downTo i){
-//         println(a)
-//     }
+     selectionSort(arrayOf(15,14,13,12,11,10,9,8,7,6,5,4,3,2,1))
+//     bogoSort(arrayOf(12,11,10,9,8,7,6,5,4,3,2,1))
  }
 
+ public fun selectionSort(arr:Array<Int>){
+     for(left in arr.indices){
+         var i=left
+         var min=left
+         while(i<arr.size){
+             if(arr[i]<arr[min]){
+                 min=i
+             }
+             i++
+         }
+         val buf=arr[left]
+         arr[left]=arr[min]
+         arr[min]=buf
+     }
+     arr.forEach(::println)
+ }
  public fun bogoSort(arr: Array<Int>){
      val start=System.currentTimeMillis()
 
      do{
          for(i in arr.indices){
-             val rand=(arr.indices).random();
+             val rand=(0..arr.size-1).random();
              val buf=arr[i]
              arr[i]=arr[rand]
              arr[rand]=buf;
          }
      }
      while (!isSorted(arr))
-
+     arr.forEach(::println)
 
 
      println("bogosort time: ${System.currentTimeMillis()-start}")
  }
 
  public fun isSorted(arr:Array<Int>):Boolean{
-    val i=1;
+     var i=1;
      while(i<arr.size){
          if(arr[i]<arr[i-1]) return false
+         i++;
      }
      return true
  }
  public fun insertionSort(arr:Array<Int>){
+     val start=System.currentTimeMillis()
      var i=1
      while(i<arr.size){
          val currentValue=arr[i]
@@ -50,6 +64,7 @@
          i++
      }
      arr.forEach(::println)
+     println("insertion sort time: ${System.currentTimeMillis()-start}")
  }
  public fun bubbleSort(arr:Array<Int>){
      arr.forEach {
