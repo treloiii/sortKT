@@ -1,8 +1,31 @@
  public fun main(args:Array<String>){
-     selectionSort(arrayOf(15,14,13,12,11,10,9,8,7,6,5,4,3,2,1))
+     shuttleSort(arrayOf(15,14,13,12,11,10,9,8,7,6,5,4,3,2,1))
 //     bogoSort(arrayOf(12,11,10,9,8,7,6,5,4,3,2,1))
  }
 
+ public fun shuttleSort(arr: Array<Int>){
+     var i=0;
+     while(i<arr.size-1){
+         if(arr[i]>arr[i+1]){
+             val buf=arr[i]
+             arr[i]=arr[i+1]
+             arr[i+1]=buf
+             var j=i
+             while(j>0){
+                 if(arr[j]<arr[j-1]){
+                     val buf1=arr[j]
+                     arr[j]=arr[j-1]
+                     arr[j-1]=buf1
+                 }
+                 else
+                     break
+                 j--
+             }
+         }
+         i++
+     }
+     arr.forEach(::println)
+ }
  public fun selectionSort(arr:Array<Int>){
      for(left in arr.indices){
          var i=left
